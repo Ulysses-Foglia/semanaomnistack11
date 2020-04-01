@@ -1,5 +1,8 @@
+//nome do arquivo foi trocado de index.js para app.js
+
 const express = require('express') // recebe funcionalidades do Express
 const cors = require('cors')
+const { errors } = require('celebrate')
 const routes = require('./routes') // o ./ é utilizado para diferenciar um arquivo de uma notação de pasta. O ../ é utilizado para referenciar a pasta anterior
 
 const app = express() // criando a aplicação
@@ -8,6 +11,7 @@ app.use(cors()) // módulo de segurança - Determina quem vai poder acessar a ap
 
 app.use(express.json()) // indica a utilização do formato Json para o corpo das requisições **Não rodou --> De .jon para .json() corrigiu
 app.use(routes)
+app.use(errors())
 
 /**
  * Rota / Recurso
@@ -40,4 +44,4 @@ app.use(routes)
      * Query Builder: tanle('users').select('*').where()
      */
 
-app.listen(3333)
+module.exports = app;
